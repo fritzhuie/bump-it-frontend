@@ -9,8 +9,6 @@ import Profile from './components/Profile/Profile';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import * as authService from './services/authService';
 
-
-
 const App = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(authService.getUser());
@@ -44,10 +42,10 @@ const App = () => {
     <>
 
       {/* NavBar component, passing user and handleLogout as props */}
-      <NavBar user={user} handleLogout={handleLogout} handleSignupOrLogin={handleSignupOrLogin} />
+      {/* <NavBar user={user} handleLogout={handleLogout} handleSignupOrLogin={handleSignupOrLogin} /> */}
       {/* Routes definition for navigation */}
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+        <Route path="/" element={<Profile user={user} />} />
         {user ? 
           // If user is logged in, don't render the login route
           <>
