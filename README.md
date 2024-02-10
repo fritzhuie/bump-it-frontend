@@ -1,4 +1,4 @@
-[Backend](https://github.com/Shyan-spec/bump-it-backend)
+**[Backend](https://github.com/Shyan-spec/bump-it-backend)**
 
 | Category        | Action          | Method | Path                        | Type       | Parameters                                          |
 |-----------------|-----------------|--------|-----------------------------|------------|----------------------------------------------------|
