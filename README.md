@@ -1,9 +1,8 @@
-| Category        | Action          | Method | Path                        | Type       | Parameters                                          |
-|-----------------|-----------------|--------|-----------------------------|------------|----------------------------------------------------|
-| Authentication  | Login           | POST   | `/api/login`                | JSON       | `email`, `password`                                 |
-| Authentication  | Signup          | POST   | `/api/signup`               | JSON       | `email`, `password`, `name`                         |
-| User Profile    | Upload Avatar   | PUT    | `/api/user/avatar`          | FormData   | `avatar` (file)                                     |
-| User Profile    | View Profile    | GET    | `/api/user/profile/{userId}`| JSON       | `userId` (optional, path parameter)                 |
-| User Profile    | Delete Profile  | DELETE | `/api/user/profile`         | JSON       |                                                     |
-| Game Mechanics  | Send Bump Event | POST   | `/api/game/bump`            | JSON       | `opponentId`, `choice` (`rock`, `scissor`, `paper`) |
-| Game Mechanics  | View Result     | GET    | `/api/game/result/{matchId}`| JSON       | `matchId` (path parameter)                          |
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
