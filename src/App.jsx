@@ -8,6 +8,8 @@ import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile'; 
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import * as authService from './services/authService';
+import './App.css';
+
 
 const App = () => {
   const navigate = useNavigate();
