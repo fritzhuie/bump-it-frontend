@@ -34,16 +34,20 @@ async function signup(user) {
 }
 
 async function login(credentials) {
+  console.log("LOGGING IN")
   try {
     const res = await fetch(`${BASE_URL}/users/login/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),
     })
+
     const json = await res.json()
-    if (json.token) {
-      console.log("setting token", json.token)
-      tokenService.setToken(json.token)
+    console.log( json)
+    console.log( json.access)
+    if (json.access) {
+      console.log("setting token", json.access)
+      tokenService.setToken(json.access)
     }
     if (json.err) {
       throw new Error(json.err)
