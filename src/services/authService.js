@@ -12,7 +12,7 @@ function getUser() {
 async function signup(user) {
   try {
     //set response to awiat the fetch for signup 
-    const res = await fetch(`${BASE_URL}/users/register`, {
+    const res = await fetch(`${BASE_URL}/users/register/`, {
       //set request method 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -34,7 +34,7 @@ async function signup(user) {
 
 async function login(credentials) {
   try {
-    const res = await fetch(`${BASE_URL}/users/login`, {
+    const res = await fetch(`${BASE_URL}/users/login/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),

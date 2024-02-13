@@ -22,7 +22,6 @@ const LoginPage = props => {
         updateMessage={updateMessage}
       />
     </main>
-   
   
   )
 }

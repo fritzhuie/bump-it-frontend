@@ -6,8 +6,8 @@ import './LoginForm.module.css';
 const LoginForm = (props) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    pw: '',
+    username: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -28,8 +28,8 @@ const LoginForm = (props) => {
 
   const handleClear = () => {
     setFormData({
-      email: '',
-      pw: '',
+      username: '',
+      password: '',
     });
   };
 
@@ -39,15 +39,15 @@ const LoginForm = (props) => {
         <h2 className="text-2xl font-bold mb-4">Log In</h2>
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="text-gray-500 text-sm">
-              Email
+            <label htmlFor="username" className="text-gray-500 text-sm">
+              Username
             </label>
             <input
               type="text"
               autoComplete="off"
-              id="email"
-              value={formData.email}
-              name="email"
+              id="username"
+              value={formData.username}
+              name="username"
               onChange={handleChange}
               className="border border-gray-500 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300 w-full"
             />
