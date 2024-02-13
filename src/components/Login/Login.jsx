@@ -6,7 +6,7 @@ import styles from './Login.module.css'
 
 
 const LoginPage = props => {
-  console.log(props);
+  // console.log(props);
   const [message, setMessage] = useState([''])
 
   const updateMessage = msg => {

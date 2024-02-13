@@ -24,7 +24,8 @@ const SignupForm = (props) => {
     try {
       await authService.signup(formData);
       props.handleSignupOrLogin();
-      navigate('/quiz');
+      // navigate('/profile');
+      console.log("made it past login")
     } catch (err) {
       props.updateMessage(err.message);
     }

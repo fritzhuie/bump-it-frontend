@@ -21,7 +21,7 @@ const App = () => {
 
   function handleSignupOrLogin() {
     setUser(authService.getUser);
-    console.log("handleSignupOrLogin called");
+    // console.log("handleSignupOrLogin called");
   }
   
 
