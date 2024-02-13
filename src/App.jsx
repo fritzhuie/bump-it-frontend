@@ -8,6 +8,9 @@ import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile'; 
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import * as authService from './services/authService';
+import MatchResult from './components/MatchResult/MatchResult';
+import History from './components/History/History';
+import Game from './components/Game/Game';
 
 const App = () => {
   const navigate = useNavigate();
@@ -49,6 +52,10 @@ const App = () => {
           <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/profile" element={<Profile handleLogout={handleLogout} />} />
+          <Route path="/game" element={<Game />} />
+          <Route path="/matchresult" element={<MatchResult />} />
+          <Route path="/history" element={<History />} />
+
       </Routes>
     </>
   );
