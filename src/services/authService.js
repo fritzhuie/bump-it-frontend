@@ -1,10 +1,9 @@
 //import tokenservice
 import * as tokenService from './tokenService'
 //set the base url to the env variable
-const REACT_APP_BACK_END_SERVER_URL = "http://localhost:3001"
 
 // console.log(process.env.REACT_APP_BACK_END_SERVER_URL)
-const BASE_URL = `${REACT_APP_BACK_END_SERVER_URL}/api/auth`
+const BASE_URL = `https://django-bump-it-8e545e507195.herokuapp.com`
 // retrive user data from token 
 function getUser() {
   return tokenService.getUserFromToken()
@@ -13,7 +12,7 @@ function getUser() {
 async function signup(user) {
   try {
     //set response to awiat the fetch for signup 
-    const res = await fetch(`${BASE_URL}/signup`, {
+    const res = await fetch(`${BASE_URL}/users/register`, {
       //set request method 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

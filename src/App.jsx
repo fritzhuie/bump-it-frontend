@@ -33,7 +33,7 @@ const App = () => {
       navigate('/profile')
     } else {
       // If not logged in, navigate to the login page
-      navigate('/login');
+      navigate('/signup');
     }
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]); // Add user as a dependency to trigger the effect when user state changes
@@ -46,27 +46,9 @@ const App = () => {
       {/* Routes definition for navigation */}
       <Routes>
         <Route path="/" element={<Profile user={user} />} />
-        {user ? 
-          // If user is logged in, don't render the login route
-          <>
-            <Route path="/login" element={<Navigate to="/" />} />
-          </>
-         : 
-          <>
-          {/* If user is not logged in, render the login route*/}
           <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
-          </>
-        }
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute user={user}>
-              {/* Profile component wrapped in ProtectedRoute to ensure it's accessible only to authenticated users */}
-              <Profile handleLogout={handleLogout} />
-            </ProtectedRoute>
-          }
-        />
+          <Route path="/profile" element={<Profile handleLogout={handleLogout} />} />
       </Routes>
     </>
   );
