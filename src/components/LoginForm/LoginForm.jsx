@@ -5,6 +5,7 @@ import './LoginForm.module.css';
 
 const LoginForm = (props) => {
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -60,8 +61,8 @@ const LoginForm = (props) => {
               type="password"
               autoComplete="off"
               id="password"
-              value={formData.pw}
-              name="pw"
+              value={formData.password}
+              name="password"
               onChange={handleChange}
               className="border border-gray-500 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300 w-full"
             />
