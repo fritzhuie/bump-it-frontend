@@ -8,7 +8,7 @@ const getToken = () => {
 export const getMatchResult = async () => {
   try {
     const token = getToken();
-    const response = await fetch(`${BASE_URL}/game/result`, {
+    const response = await fetch(`${BASE_URL}/components/MatchResult`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const getMatchResult = async () => {
 export const logMatchResult = async (resultData) => {
   try {
     const token = getToken();
-    const response = await fetch(`${BASE_URL}/game/result`, {
+    const response = await fetch(`${BASE_URL}/components/MatchResult`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
