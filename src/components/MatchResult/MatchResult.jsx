@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//Get an ID for the match it is set to display 
 const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is from a game session
   const [matchResult, setMatchResult] = useState({});
   const [userProfiles, setUserProfiles] = useState({ player1: {}, player2: {} });
