@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as gameServices from './services/gameServices';
-import * as matchResultServices from './services/matchResultServices';
-import * as profileServices from './services/profileServices';
-import { ReactComponent as CloseIcon } from './assets/close-icon.svg'; // Importing an "X" icon
 
 const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is from a game session
   const [matchResult, setMatchResult] = useState({});
@@ -44,7 +40,7 @@ const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is fro
     <div>
       <div className="match-result-header">
         <button className="close-button" onClick={handleGoToHistory}>
-          <CloseIcon /> {/* Render the "X" icon */}
+          X
         </button>
         <h1>Match Result</h1>
       </div>
