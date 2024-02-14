@@ -8,7 +8,7 @@ import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile'; 
 import * as authService from './services/authService';
 import MatchResult from './components/MatchResult/MatchResult';
-import History from './components/History/History';
+import History from './components/MatchHistory/MatchHistory';
 import Game from './components/Game/Game';
 
 const App = () => {
