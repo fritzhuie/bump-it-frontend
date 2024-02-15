@@ -31,8 +31,8 @@ const History = () => {
   return (
     <div>
       <div className="match-result-header">
-        <button className="close-button" onClick={handleGoToHistory}>
-          <CloseIcon /> {/* Render the "X" icon */}
+      <button className="close-button" onClick={handleGoToHistory}>
+          X
         </button>
         <h1>Match Result</h1>
       </div>
