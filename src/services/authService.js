@@ -19,10 +19,10 @@ async function signup(user) {
       body: JSON.stringify(user),
     })
     const json = await res.json()
-    if (json.token) {
-      console.log("setting token", json.token)
-      tokenService.setToken(json.token)
-      return json.token
+    if (json) {
+      console.log("setting token", json.access)
+      tokenService.setToken(json.access)
+      return json.access
     }
     if (json.err) {
       throw new Error(json.err)
