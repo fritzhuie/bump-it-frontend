@@ -3,16 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
 
 const SignupForm = (props) => {
+
+  const updateMessage = props.updateMessage
+  const handleSignupOrLogin = props.handleSignupOrLogin
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
     passwordConf: '',
   });
 
   const handleChange = (e) => {
-    props.updateMessage('');
+    updateMessage('');
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -23,23 +27,23 @@ const SignupForm = (props) => {
     e.preventDefault();
     try {
       await authService.signup(formData);
-      props.handleSignupOrLogin();
-      // navigate('/profile');
+      handleSignupOrLogin();
+       navigate('/profile');
       console.log("made it past login")
     } catch (err) {
-      props.updateMessage(err.message);
+       updateMessage(err.message);
     }
   };
 
-  const { name, email, password, passwordConf } = formData;
+  const { username, email, password, passwordConf } = formData;
 
   const isFormInvalid = () => {
-    return !(name && email && password && password === passwordConf);
+    return !(username && email && password && password === passwordConf);
   };
 
   const handleClearForm = () => {
     setFormData({
-      name: '',
+      username: '',
       email: '',
       password: '',
       passwordConf: '',
@@ -52,15 +56,15 @@ const SignupForm = (props) => {
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="text-gray-500 text-sm">
+            <label htmlFor="username" className="text-gray-500 text-sm">
               Name
             </label>
             <input
               type="text"
               autoComplete="off"
-              id="name"
-              value={name}
-              name="name"
+              id="username"
+              value={username}
+              name="username"
               onChange={handleChange}
               className="border border-gray-500 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300 w-full"
             />
