@@ -46,7 +46,7 @@ const Game = () => {
             }
         }, 100)
 
-        setTimeout(() => { isBumpEnabled = true }, 1)
+        setTimeout(() => { isBumpEnabled = true }, 500)
     }
 
     const handleBump = () => {
@@ -110,7 +110,7 @@ const Game = () => {
 
     return (
         <>
-            <h1>Game page 1.3</h1>
+            <h1>Game page 1.4</h1>
             <div>
                 <button
                     className="rock-button"
