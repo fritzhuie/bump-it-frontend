@@ -71,27 +71,32 @@ export class BumpDetector {
     startDetection() {
       if (typeof DeviceMotionEvent.requestPermission === 'function') {
         // Support iOS 13+ permission handling
+        console.log("STARTED BUMP DETECTION")
         DeviceMotionEvent.requestPermission()
           .then((permissionState) => {
             if (permissionState === 'granted') {
-              this.enableAccelerometer(); // Start capturing
+                console.log("BUMP DETECTION GRANTED")
+                this.enableAccelerometer(); // Start capturing
             }
           })
           .catch(console.error);
       } else {
         // Standard permission handling
+        console.log("old way enabled?")
         this.enableAccelerometer();
       }
     }
   
     enableAccelerometer() {
-      window.addEventListener('devicemotion', this.handleMotionEvent, false);
-      this.isEnabled = true; 
+        console.log("ENABLED ACCELEROMETER")
+        window.addEventListener('devicemotion', this.handleMotionEvent, false);
+        this.isEnabled = true; 
     }
   
     disableAccelerometer() {
-      window.removeEventListener('devicemotion', this.handleMotionEvent);
-      this.isEnabled = false; 
+        console.log("DISABLED ACCELEROMETER")
+        window.removeEventListener('devicemotion', this.handleMotionEvent);
+        this.isEnabled = false; 
     }
   
     handleMotionEvent = (event) => {
@@ -108,9 +113,10 @@ export class BumpDetector {
   
     bumpDetected() {
       // Check for recent bumps to avoid double-triggers
+      console.log('Bump Detected in bump class...');
       const now = Date.now();
       if (!this.lastBumpTimestamp || (now - this.lastBumpTimestamp) > 500) {
-        console.log('Bump Detected!');
+        console.log('********* Bump Detected! *******');
         if (this.bumpCallback) {
             this.bumpCallback()
         }

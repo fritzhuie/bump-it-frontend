@@ -13,6 +13,7 @@ const Game = () => {
   const [choice, setChoice] = useState(null)
   const [status, setStatus] = useState("Waiting for bump")
   const [isBumpEnabled, setIsBumpEnabled] = useState(true)
+  const [didBump, setDidBump] = useState("...")
 
   const handleHistoryNav = () => {
     navigate('/history')
