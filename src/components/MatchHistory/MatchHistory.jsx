@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import CloseIcon from '@mui/icons-material/Close';
+import { getMatchHistory } from '../../services/matchHistoryServices';
 
 const History = () => {
   const [matchHistory, setMatchHistory] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    historyServices.getMatchHistory()
+    getMatchHistory()
+ 
       .then(history => {
         // Fetch profiles for all opponents in the match history
-        const profilePromises = history.map(match => profileServices.fetchProfile(match.opponentId));
-        return Promise.all(profilePromises)
-          .then(profiles => {
+        // const profilePromises = history.map(match => profileServices.fetchProfile(match.opponentId));
+        // return Promise.all(profilePromises)
+        //   .then(profiles => {
             // Combine match history with opponent profiles
-            return history.map((match, index) => ({ ...match, opponentProfile: profiles[index] }));
-          });
+            return history.map() 
+            // => ({ ...match, opponentProfile: profiles[index] }));
+          ;
       })
       .then(combinedHistory => {
         setMatchHistory(combinedHistory);
@@ -24,6 +28,11 @@ const History = () => {
       });
   }, []);
 
+  const handleGoToHistory = () => {
+    navigate(-1); 
+  };
+  
+
   const handleMatchClick = (matchId) => {
     navigate(`/match-result/${matchId}`);
   };
@@ -31,9 +40,9 @@ const History = () => {
   return (
     <div>
       <div className="match-result-header">
-        <button className="close-button" onClick={handleGoToHistory}>
+        {/* <button className="close-button" onClick={handleGoToHistory}>
           <CloseIcon /> {/* Render the "X" icon */}
-        </button>
+        {/* </button> */}
         <h1>Match Result</h1>
       </div>
       <ul>
