@@ -21,4 +21,4 @@ export const getMatchHistory = async () => {
     console.error('There was a problem with the fetch operation:', error);
     throw error;
   }
-};
+};  

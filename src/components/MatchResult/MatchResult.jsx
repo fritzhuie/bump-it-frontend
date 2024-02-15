@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMatchHistory } from '../../services/matchHistoryServices';
-import { getMatchResult} from '../../services/matchResultServices'
+import { getMatchResult } from '../../services/matchResultServices'
+import { getProfile } from '../../services/profileServices';
 
 //Get an ID for the match it is set to display 
 const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is from a game session
-  const [matchResult, setMatchResult] = useState({});
-  const [userProfiles, setUserProfiles] = useState({ player1: {}, player2: {} });
-  const navigate = useNavigate();
+  const [matchResult, setMatchResult] = useState({})
+  const [profiles, setProfiles] = useState({})
+  const [userProfiles, setUserProfiles] = useState({ player1: {}, player2: {} })
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Fetch match result
     getMatchResult()
-      .then(result => {
-        setMatchResult(result); // Match result state
-        matchResultServices.logMatchResult(result);
-        
-        // Fetch profiles for both users
+      .then(results => {
+        const match = results[results.length - 1]
+        console.log(results[results.length - 1])
+        setUserProfiles({ player1: match.player_one, player2: match.player_two })
+        setMatchResult(match)
         return Promise.all([
-          profileServices.fetchProfile(result.player1Id),
-          profileServices.fetchProfile(result.player2Id)
-        ]);
+          getProfile(match.player_one),
+          getProfile(match.player_two)
+        ])
       })
-      .then(([player1Profile, player2Profile]) => {
-        // Set profile state for both users
-        setUserProfiles({ player1: player1Profile, player2: player2Profile });
+      .then( profiles => {
+        console.log(profiles)
+        setProfiles(profiles)
       })
       .catch(error => {
         console.error('Failed to fetch data', error);
-      });
-  }, []);
+      })
+  }, [])
 
   const handlePlayAgain = () => {
     navigate('/game');
-  };
+  }
 
   const handleGoToHistory = () => {
     navigate('/history');
-  };
+  }
 
   return (
     <div>

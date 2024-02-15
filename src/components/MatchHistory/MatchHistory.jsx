@@ -25,7 +25,7 @@ const History = () => {
       // })
       // .then(combinedHistory => {
       //   setMatchHistory(combinedHistory);
-      // })
+      // }) 
       .catch(error => {
         console.error('Failed to fetch match history:', error);
       });
