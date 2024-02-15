@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../../services/networkState.js'
 
 const Profile = () => {
 
