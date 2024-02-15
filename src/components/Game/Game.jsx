@@ -13,17 +13,12 @@ const Game = () => {
   const [choice, setChoice] = useState(null)
   const [status, setStatus] = useState("Waiting for bump")
   const [isBumpEnabled, setIsBumpEnabled] = useState(true)
-  const [didBump, setDidBump] = useState("...")
 
   const handleHistoryNav = () => {
     navigate('/history')
   }
 
-  const handleBump = async () => {
-    if (!choice || !isBumpEnabled) { return }
-    setStatus("Bump detected")
-    setIsBumpEnabled(false)
-
+  const sendBumpEvent = async () => {
     const preBumpHistory = await getMatch()
     console.log("preBumpHistory: ", preBumpHistory)
     if ( !preBumpHistory ) { return }
@@ -48,6 +43,14 @@ const Game = () => {
     }, 100)
 
     setTimeout(() => setIsBumpEnabled(true), 1)
+  }
+
+  const handleBump = () => {
+    if (!choice || !isBumpEnabled) { return }
+    setStatus("Bump callback was called!")
+    setIsBumpEnabled(false)
+
+    sendBumpEvent()
   }
 
   const handleSelection = (choice) => {
@@ -93,7 +96,6 @@ const Game = () => {
       <button onClick={handleHistoryNav}>go to history page</button>
       <button onClick={handleBump}>TEST BUMP</button>
       <p>{status}</p>
-      <p>{didBump}</p>
       
     </>
   )

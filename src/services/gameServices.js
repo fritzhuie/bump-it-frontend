@@ -109,7 +109,7 @@ export class BumpDetector {
           this.bumpDetected();
         }
       }
-    };
+    }; 
   
     bumpDetected() {
       // Check for recent bumps to avoid double-triggers
@@ -117,9 +117,7 @@ export class BumpDetector {
       const now = Date.now();
       if (!this.lastBumpTimestamp || (now - this.lastBumpTimestamp) > 500) {
         console.log('********* Bump Detected! *******');
-        if (this.bumpCallback) {
-            this.bumpCallback()
-        }
+        this.bumpCallback()
         this.lastBumpTimestamp = now;  
       }
     }
