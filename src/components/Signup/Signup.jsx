@@ -3,7 +3,8 @@ import SignupForm from '../../components/SignupForm/SignupForm'
 import styles from './Signup.module.css'
 
 
-const Signup = props => {
+const Signup = (props) => {
+  const handleSignupOrLogin = props.handleSignupOrLogin
   const [message, setMessage] = useState([''])
 
   const updateMessage = msg => {
@@ -14,7 +15,7 @@ const Signup = props => {
     <main className={styles.container}>
   
       <p>{message}</p>
-      <SignupForm {...props} updateMessage={updateMessage} />
+      <SignupForm handleSignupOrLogin={handleSignupOrLogin} updateMessage={updateMessage} />
     </main>
   )
 }
