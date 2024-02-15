@@ -1,5 +1,6 @@
 //import tokenservice
 import * as tokenService from './tokenService'
+import defaultImage from '../img/portrait-0.png'
 //set the base url to the env variable
 
 // console.log(process.env.REACT_APP_BACK_END_SERVER_URL)
@@ -10,13 +11,17 @@ function getUser() {
 }
 // signup function 
 async function signup(user) {
+  
   try {
+     const defaultAvatarUrl = '../img/portrait-0.png'; // Use the imported default image
+    const userWithAvatar = { ...user,profile_image: defaultAvatarUrl }; // Update the key to 'profile_img'
     //set response to awiat the fetch for signup 
+    console.log('User with avatar:', userWithAvatar);
     const res = await fetch(`${BASE_URL}/users/register/`, {
       //set request method 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user),
+      body: JSON.stringify(userWithAvatar),
     })
     const json = await res.json()
     if (json) {
@@ -27,6 +32,8 @@ async function signup(user) {
     if (json.err) {
       throw new Error(json.err)
     }
+
+    console.log(defaultAvatarUrl)
   } catch (err) {
     console.log(err)
     throw err

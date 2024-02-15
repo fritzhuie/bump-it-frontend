@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUser, getToken } from '../../services/profileServices.js'; // Import getToken
+import defaultImage from '../../img/portrait-0.png';
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -23,12 +24,15 @@ useEffect(() => {
     fetchUserProfile();
 }, []); // No dependencies needed since we are not relying on any prop or state changes
 console.log(userProfile)
+// const defaultImg = '../../img/portrait-0.png'
+const defaultImg = '../../img/portrait-0.png'
     return (
         <>
             <h1>Profile</h1>
             {userProfile && (
                 <div>
                     <p>Username: {userProfile[0].name}</p>
+                    <img src={defaultImg}/> 
                     {/* Display more user profile data as needed */}
                 </div>
             )}
