@@ -11,18 +11,21 @@ const History = () => {
     getMatchHistory()
  
       .then(history => {
+        console.log(history)
+        setMatchHistory(history);
+      })
         // Fetch profiles for all opponents in the match history
         // const profilePromises = history.map(match => profileServices.fetchProfile(match.opponentId));
         // return Promise.all(profilePromises)
         //   .then(profiles => {
             // Combine match history with opponent profiles
-            return history.map() 
+            //return history.map() 
             // => ({ ...match, opponentProfile: profiles[index] }));
-          ;
-      })
-      .then(combinedHistory => {
-        setMatchHistory(combinedHistory);
-      })
+          
+      // })
+      // .then(combinedHistory => {
+      //   setMatchHistory(combinedHistory);
+      // })
       .catch(error => {
         console.error('Failed to fetch match history:', error);
       });
@@ -46,12 +49,13 @@ const History = () => {
         <h1>Match Result</h1>
       </div>
       <ul>
-        {matchHistory.map(match => (
+        {matchHistory.map((match) => (
           <li key={match.id} onClick={() => handleMatchClick(match.id)}>
-            <img src={match.userAvatar} alt="User Avatar" />
-            <img src={match.opponentProfile.avatar} alt="Opponent Avatar" />
-            <p>{match.winnerName}</p>
-            <p>{match.opponentProfile.name}</p>
+            {/* <img src={match.userAvatar} alt="User Avatar" />
+            <img src={match.opponentProfile.avatar} alt="Opponent Avatar" /> */}
+            <p>{match.id}</p>
+            <p>{match.time_stamp}</p>
+            <p>{match.player_two}</p>
           </li>
         ))}
       </ul>
