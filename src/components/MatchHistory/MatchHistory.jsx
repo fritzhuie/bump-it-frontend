@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMatchHistory } from '../../services/matchHistoryServices'
-import { getProfile } from '../../services/profileServices'
+import { getProfiles } from '../../services/profileServices'
 
 const History = () => {
   const [matchHistory, setMatchHistory] = useState([]);
@@ -11,11 +11,21 @@ const History = () => {
   useEffect(() => {
     getMatchHistory()
       .then(history => {
-        console.log(history)
-        setMatchHistory(history);
-        for(let match of history) {
-
+        console.log(history) // array of matches
+        setMatchHistory(history)
+        let user_ids = new Set()
+        for(let match of history){
+          user_ids.add(match.player_one)
+          user_ids.add(match.player_two)
         }
+        return Array.from(user_ids)
+      })
+      .then(user_ids => {
+        return getProfiles(user_ids)
+      })
+      .then(profiles => {
+        console.log(profiles)
+        setProfiles(profiles)
       })
       .catch(error => {
         console.error('Failed to fetch match history:', error)

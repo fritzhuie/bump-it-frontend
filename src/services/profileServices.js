@@ -22,3 +22,13 @@ export const getProfile = async (user_id) => {
       throw error
     }
   }
+
+  export const getProfiles = async (user_ids) => {
+    try {
+        const profiles = await Promise.all(user_ids.map(id => getProfile(id)))
+        return profiles
+    } catch (error) {
+      console.error('There was a problem with the fetch all profiles operation:', error)
+      throw error
+    }
+  }
