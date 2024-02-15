@@ -10,7 +10,7 @@ const Game = () => {
 
     const [choice, setChoice] = useState(null)
     const [status, setStatus] = useState("Waiting for bump")
-    const [isBumpEnabled, setIsBumpEnabled] = useState(true)
+    let isBumpEnabled = true
 
     const handleHistoryNav = () => {
         navigate("/history")
@@ -46,16 +46,15 @@ const Game = () => {
             }
         }, 100)
 
-        setTimeout(() => setIsBumpEnabled(true), 1)
+        setTimeout(() => { isBumpEnabled = true }, 1)
     }
 
     const handleBump = () => {
-        console.log("handleBump called *** ")
         if (!choice || !isBumpEnabled) {
             return
         }
-        setStatus("Bump callback was called!")
-        setIsBumpEnabled(false)
+        isBumpEnabled = false
+        console.log("handleBump called *** ")
         sendBumpEvent()
     }
 
@@ -111,7 +110,7 @@ const Game = () => {
 
     return (
         <>
-            <h1>Game page 1.2</h1>
+            <h1>Game page 1.3</h1>
             <div>
                 <button
                     className="rock-button"
