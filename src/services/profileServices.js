@@ -1,25 +1,18 @@
-const BASE_URL = `https://django-bump-it-8e545e507195.herokuapp.com`;
 import { getUserFromToken } from "./tokenService";
-export const getToken = () => {
-  // Retrieve the token from local storage
-  const token = localStorage.getItem('token');
-  
-  // Check if the token exists
-  if (token) {
-    // Decode the token by splitting it into three parts and decoding the second part (the payload)
-    const decodedToken = JSON.parse(atob(token.split('.')[1])); 
 
-    return decodedToken; // Return the decoded token
+const BASE_URL = `https://django-bump-it-8e545e507195.herokuapp.com`;
+
+export const getToken = () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    return decodedToken;
   }
-  
-  // Return null if no token is found
   return null;
 };
 
 export const getUser = async () => {
-  const token = getUserFromToken();
-  console.log(token)
-  
+  const token = getUserFromToken(); // Assuming this correctly fetches the actual token string
   if (token) {
     const response = await fetch(`${BASE_URL}/users/profile/`, {
       method: 'GET',
@@ -28,20 +21,33 @@ export const getUser = async () => {
         'Authorization': `Bearer ${token}`,
       },
     });
-
     if (!response.ok) {
       throw new Error('Error fetching user profile: ' + response.statusText);
     }
-
-    console.log(response)
-
     return await response.json();
   }
-
 };
 
-export const displayAvatar = async () => {
-  
-}
-
-
+export const updateProfileImage = async (newImage) => {
+  const tokenForUserId = getToken(); 
+  const tokenForBearer = getUserFromToken();
+  if (tokenForUserId) {
+    try {
+      const response = await fetch(`${BASE_URL}/users/profile/${tokenForUserId.user_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${tokenForBearer}`,
+        },
+        body: JSON.stringify({ profile_image: newImage }),
+      });
+      if (!response.ok) throw new Error('Profile update failed: ' + response.statusText);
+      const json = await response.json();
+      console.log('Profile updated successfully', json);
+      return json;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  }
+};
