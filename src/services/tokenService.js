@@ -3,7 +3,8 @@ import { jwtDecode } from 'jwt-decode'
 function getUserFromToken() {
     const token = getToken()
     console.log("TOKEN: ", token)
-    return token ? jwtDecode(token).user : null
+    // return token ? jwtDecode(token).user : null
+    return token
 }
 
 function setToken(token) {
@@ -14,7 +15,6 @@ function getToken() {
     let token = localStorage.getItem('token')
     if (token) {
         const payload = jwtDecode(token)
-        console.log(payload)
         if (payload.exp < Date.now() / 1000) {
         localStorage.removeItem('token')
         token = null
