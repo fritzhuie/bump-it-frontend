@@ -33,7 +33,7 @@ export const getUser = async () => {
       throw new Error('Error fetching user profile: ' + response.statusText);
     }
 
-    console.log(response.data)
+    console.log(response)
 
     return await response.json();
   }

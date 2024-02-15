@@ -10,6 +10,7 @@ useEffect(() => {
     const fetchUserProfile = async () => {
         try {
             const token = getToken();
+            console.log(token)
             if (token) {
             const profileData = await getUser(token.user_id); // Assuming user_id is available in the token payload
             setUserProfile(profileData);

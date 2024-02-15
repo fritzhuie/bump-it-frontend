@@ -2,7 +2,9 @@ import { jwtDecode } from 'jwt-decode'
 
 function getUserFromToken() {
     const token = getToken()
-    return token ? jwtDecode(token).user_id : null
+    console.log(token)
+    return token ? token : null
+    
 }
 
 function setToken(token) {
