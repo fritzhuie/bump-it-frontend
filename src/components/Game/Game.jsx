@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../services/gameServices'
-import { sendBump } from '../../services/gameServices'
+import { sendBump, getMatch } from '../../services/gameServices'
 import { useState } from 'react'
 
 
@@ -22,7 +22,8 @@ const Game = () => {
     setIsBumpEnabled(false)
     setChoice(null)
 
-    const response = await sendBump(choice)
+    // const response = await sendBump(choice)
+    const response = await getMatch()
     console.log(response)
 
     setTimeout(() => setIsBumpEnabled(true), 1)

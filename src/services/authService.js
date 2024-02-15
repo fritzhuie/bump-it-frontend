@@ -28,7 +28,7 @@ async function signup(user) {
       throw new Error(json.err)
     }
   } catch (err) {
-    // console.log(err)
+    console.log(err)
     throw err
   }
 }
@@ -43,16 +43,16 @@ async function login(credentials) {
     })
 
     const json = await res.json()
-    console.log( json)
-    console.log( json.access)
+    console.log("LOGIN RESPONSE:", json)
     if (json.access) {
-      console.log("setting token", json.access)
+      console.log("setting token: ", json.access)
       tokenService.setToken(json.access)
     }
     if (json.err) {
       throw new Error(json.err)
     }
   } catch (err) {
+    console.log(err)
     throw err
   }
 }
