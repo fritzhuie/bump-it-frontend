@@ -36,8 +36,8 @@ const History = () => {
   };
   
 
-  const handleMatchClick = (matchId) => {
-    navigate(`/match-result/${matchId}`);
+  const handleMatchClick = (resultId) => {
+    navigate(`/game/result/${resultId}`);
   };
 
   return (

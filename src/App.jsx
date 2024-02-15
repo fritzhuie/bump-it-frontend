@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/profile" element={<ProtectedRoute user={user}> <Profile /> </ProtectedRoute>} />
           <Route path="/game" element={   <ProtectedRoute user={user}> <Game /> </ProtectedRoute>} />
-          <Route path="/matchresult" element={ <ProtectedRoute user={user}> <MatchResult /> </ProtectedRoute>} />
+          <Route path="/game/result/:resultId" element={ <ProtectedRoute user={user}> <MatchResult /> </ProtectedRoute>} />
           <Route path="/history" element={ <ProtectedRoute user={user}> <History /> </ProtectedRoute> } />
           <Route path="/profile" element={ <ProtectedRoute user={user}> <Profile /> </ProtectedRoute> } /> 
         <Route 
