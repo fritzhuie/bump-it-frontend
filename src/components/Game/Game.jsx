@@ -108,7 +108,7 @@ const Game = () => {
 
     return (
         <>
-            <h1>Game page</h1>
+            <h1>Game page 1.0</h1>
             <div>
                 <button
                     className="rock-button"
