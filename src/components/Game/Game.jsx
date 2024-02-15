@@ -19,14 +19,14 @@ const Game = () => {
     const sendBumpEvent = async () => {
         const preBumpHistory = await getMatch()
         console.log("preBumpHistory: ", preBumpHistory)
-        if (!preBumpHistory) {
+        if (preBumpHistory === null) {
             return
         }
         setStatus("preBumpHistory exists")
 
         const bumpResult = await sendBump(choice)
         console.log("bumpResult ", bumpResult)
-        if (!bumpResult) {
+        if (bumpResult === null) {
             return
         }
         setStatus("bumpResult exists")
@@ -36,13 +36,13 @@ const Game = () => {
         setTimeout(async () => {
             const resultHistoryResponse = await getMatch()
             console.log("resultHistoryResponse: ", resultHistoryResponse)
-            if (!preBumpHistory) {
+            if (preBumpHistory !== null) {
                 return
             }
             setStatus("Bump completed")
 
-            if (resultHistoryResponse != preBumpHistory) {
-                // navigate("/matchresult")
+            if (resultHistoryResponse != null && preBumpHistory !== null) {
+                navigate("/matchresult")
             }
         }, 100)
 
@@ -65,8 +65,25 @@ const Game = () => {
         }
     }
 
-    const threshold = 20
+    const requestDeviceMotionPermission = () => {
+        if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+            DeviceMotionEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        console.log('DeviceMotion permission granted.')
+                    } else {
+                        console.log('DeviceMotion permission not granted.')
+                    }
+                })
+                .catch(console.error)
+        } else {
+            console.log('DeviceMotionEvent.requestPermission is not required or not supported by this browser.')
+        }
+    }
 
+    requestDeviceMotionPermission()
+
+    const threshold = 20
     const startDetection = () => {
       try {
         console.log("ENABLED ACCELEROMETER")
