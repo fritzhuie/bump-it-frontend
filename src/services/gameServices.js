@@ -39,9 +39,6 @@ export const sendBump = async (choice) => {
         if (choice != "Rock" && choice != "Paper" && choice != "Scissors"){
             throw "must choose Rock Paper or Scissor (capitolized)"
         }
-
-        const matchSample = await getMatch()
-        console.log(matchSample)
         
         const payload = JSON.stringify({phone_time_stamp: new Date().toISOString(), choice: choice})
         console.log("PAYLOAD:", payload )
@@ -63,3 +60,61 @@ export const sendBump = async (choice) => {
     }
 }
 
+export class BumpDetector {
+    constructor(bumpCallback) {
+      this.bumpCallback = bumpCallback
+      this.threshold = 20
+      this.lastBumpTimestamp = null
+      this.isEnabled = false
+    }
+  
+    startDetection() {
+      if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        // Support iOS 13+ permission handling
+        DeviceMotionEvent.requestPermission()
+          .then((permissionState) => {
+            if (permissionState === 'granted') {
+              this.enableAccelerometer(); // Start capturing
+            }
+          })
+          .catch(console.error);
+      } else {
+        // Standard permission handling
+        this.enableAccelerometer();
+      }
+    }
+  
+    enableAccelerometer() {
+      window.addEventListener('devicemotion', this.handleMotionEvent, false);
+      this.isEnabled = true; 
+    }
+  
+    disableAccelerometer() {
+      window.removeEventListener('devicemotion', this.handleMotionEvent);
+      this.isEnabled = false; 
+    }
+  
+    handleMotionEvent = (event) => {
+      const acc = event.accelerationIncludingGravity; 
+  
+      if (this.isEnabled) {
+        if (Math.abs(acc.x) > this.threshold || 
+            Math.abs(acc.y) > this.threshold || 
+            Math.abs(acc.z) > this.threshold) {
+          this.bumpDetected();
+        }
+      }
+    };
+  
+    bumpDetected() {
+      // Check for recent bumps to avoid double-triggers
+      const now = Date.now();
+      if (!this.lastBumpTimestamp || (now - this.lastBumpTimestamp) > 500) {
+        console.log('Bump Detected!');
+        if (this.bumpCallback) {
+            this.bumpCallback()
+        }
+        this.lastBumpTimestamp = now;  
+      }
+    }
+}

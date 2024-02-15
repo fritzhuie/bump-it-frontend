@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../services/gameServices'
-import { sendBump, getMatch } from '../../services/gameServices'
-import { useState } from 'react'
+import { sendBump, getMatch, BumpDetector } from '../../services/gameServices'
+import { useState, useEffect } from 'react'
+import '../../services/networkState.js'
 
 
 const Game = () => {
@@ -10,7 +11,7 @@ const Game = () => {
   const navigate = useNavigate()
 
   const [choice, setChoice] = useState()
-  const [isBumpEnabled, setIsBumpEnabled] = useState(true);
+  const [isBumpEnabled, setIsBumpEnabled] = useState(true)
 
   const handleHistoryNav = () => {
     navigate('/history')
@@ -20,11 +21,26 @@ const Game = () => {
     if (!choice || !isBumpEnabled) { return }
 
     setIsBumpEnabled(false)
+
+    const preBumpHistory = await getMatch()
+    console.log("preBumpHistory: ", preBumpHistory)
+    if ( !preBumpHistory ) { return }
+
+    const bumpResult = await sendBump(choice)
+    console.log("bumpResult ", bumpResult)
+    if ( !bumpResult ) { return }
+
     setChoice(null)
 
-    // const response = await sendBump(choice)
-    const response = await getMatch()
-    console.log(response)
+    setTimeout(async () => {
+      const resultHistoryResponse = await getMatch()
+      console.log("resultHistoryResponse: ", resultHistoryResponse)
+      if ( !preBumpHistory ) { return }
+
+      if ( resultHistoryResponse != preBumpHistory ) {
+        navigate('/matchresult')
+      }
+    }, 100)
 
     setTimeout(() => setIsBumpEnabled(true), 1)
   }
@@ -34,7 +50,11 @@ const Game = () => {
     setChoice(choice)
   }
 
-  let test = "waiting for bump"
+  const bumpDetector = new BumpDetector(handleBump)
+
+  useEffect(() => {
+    bumpDetector.startDetection()
+  }, [])
 
   return (
     <>
@@ -67,7 +87,7 @@ const Game = () => {
       </div>
       <button onClick={handleHistoryNav}>go to history page</button>
       <button onClick={handleBump}>TEST BUMP</button>
-      <p>{test}</p>
+      
     </>
   )
 }
