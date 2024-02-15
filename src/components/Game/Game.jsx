@@ -68,23 +68,15 @@ const Game = () => {
     const threshold = 20
 
     const startDetection = () => {
-        console.log("STARTED BUMP DETECTION")
-        DeviceMotionEvent.requestPermission()
-            .then((permissionState) => {
-                if (permissionState === "granted") {
-                    console.log("BUMP DETECTION GRANTED")
-                    enableAccelerometer()
-                }
-            })
-            .catch(console.error)
+      try {
+        console.log("ENABLED ACCELEROMETER")
+        window.addEventListener("devicemotion", handleMotionEvent, false)
+      } catch (error) {
+        console.log("No accelerometer detected")
+      }
     }
 
     startDetection()
-
-    const enableAccelerometer = () => {
-        console.log("ENABLED ACCELEROMETER")
-        window.addEventListener("devicemotion", handleMotionEvent, false)
-    }
 
     const disableAccelerometer = () => {
         console.log("DISABLED ACCELEROMETER")
