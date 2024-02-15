@@ -10,6 +10,7 @@ import * as authService from './services/authService';
 import MatchResult from './components/MatchResult/MatchResult';
 import History from './components/MatchHistory/MatchHistory';
 import Game from './components/Game/Game';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 const App = () => {
   const navigate = useNavigate();
@@ -33,13 +34,22 @@ const App = () => {
       {/* <NavBar user={user} handleLogout={handleLogout} handleSignupOrLogin={handleSignupOrLogin} /> */}
       {/* Routes definition for navigation */}
       <Routes>
-        <Route path="/" element={<Profile user={user} />} />
+        <Route path="/" element={<Game />} />
           <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/game" element={<Game />} />
-          <Route path="/matchresult" element={<MatchResult />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/profile" element={<ProtectedRoute user={user}> <Profile /> </ProtectedRoute>} />
+          <Route path="/game" element={   <ProtectedRoute user={user}> <Game /> </ProtectedRoute>} />
+          <Route path="/matchresult" element={ <ProtectedRoute user={user}> <MatchResult /> </ProtectedRoute>} />
+          <Route path="/history" element={ <ProtectedRoute user={user}> <History /> </ProtectedRoute> } />
+          <Route path="/profile" element={ <ProtectedRoute user={user}> <Profile /> </ProtectedRoute> } /> 
+        <Route 
+          path="/history" 
+          element={
+            <ProtectedRoute user={user}>
+              <History />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </>
   );
