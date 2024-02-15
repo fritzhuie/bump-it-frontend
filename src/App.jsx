@@ -34,7 +34,7 @@ const App = () => {
       {/* <NavBar user={user} handleLogout={handleLogout} handleSignupOrLogin={handleSignupOrLogin} /> */}
       {/* Routes definition for navigation */}
       <Routes>
-        <Route path="/" element={<Game />} />
+        <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/profile" element={<ProtectedRoute user={user}> <Profile /> </ProtectedRoute>} />
