@@ -71,6 +71,11 @@ const Game = () => {
                 .then(permissionState => {
                     if (permissionState === 'granted') {
                         console.log('DeviceMotion permission granted.')
+                        try {
+                            window.addEventListener("devicemotion", handleMotionEvent, false)
+                        } catch (error) {
+                            console.log("No accelerometer detected")
+                        }
                     } else {
                         console.log('DeviceMotion permission not granted.')
                     }
@@ -80,20 +85,6 @@ const Game = () => {
             console.log('DeviceMotionEvent.requestPermission is not required or not supported by this browser.')
         }
     }
-
-    requestDeviceMotionPermission()
-
-    const threshold = 20
-    const startDetection = () => {
-      try {
-        console.log("ENABLED ACCELEROMETER")
-        window.addEventListener("devicemotion", handleMotionEvent, false)
-      } catch (error) {
-        console.log("No accelerometer detected")
-      }
-    }
-
-    startDetection()
 
     const disableAccelerometer = () => {
         console.log("DISABLED ACCELEROMETER")
@@ -105,6 +96,8 @@ const Game = () => {
             return
         }
         const acc = event.accelerationIncludingGravity
+
+        const threshold = 15
 
         if (
             Math.abs(acc.x) > threshold ||
@@ -118,7 +111,7 @@ const Game = () => {
 
     return (
         <>
-            <h1>Game page 1.1</h1>
+            <h1>Game page 1.2</h1>
             <div>
                 <button
                     className="rock-button"
@@ -160,6 +153,7 @@ const Game = () => {
             </div>
             <button onClick={handleHistoryNav}>go to history page</button>
             <button onClick={handleBump}>TEST BUMP</button>
+            <button onClick={requestDeviceMotionPermission}>Enable bump!</button>
             <p>{status}</p>
         </>
     )
