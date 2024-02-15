@@ -93,6 +93,7 @@ const Game = () => {
       <button onClick={handleHistoryNav}>go to history page</button>
       <button onClick={handleBump}>TEST BUMP</button>
       <p>{status}</p>
+      <p>{didBump}</p>
       
     </>
   )
