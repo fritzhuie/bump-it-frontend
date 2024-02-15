@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getMatchHistory } from '../../services/matchHistoryServices';
+import { getMatchResult} from '../../services/matchResultServices'
 
 //Get an ID for the match it is set to display 
 const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is from a game session
@@ -9,7 +11,7 @@ const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is fro
 
   useEffect(() => {
     // Fetch match result
-    gameServices.getMatchResult()
+    getMatchResult()
       .then(result => {
         setMatchResult(result); // Match result state
         matchResultServices.logMatchResult(result);
@@ -47,13 +49,13 @@ const MatchResult = ({ fromGame }) => { // Add a prop to indicate if this is fro
       </div>
       <div className="user-result">
         <h2>{userProfiles.player1.name} (Player 1)</h2>
-        <p>Choice: {matchResult.player1Choice}</p>
-        <p>{matchResult.outcome.includes('Player 1 wins') ? 'Winner' : 'Loser'}</p>
+        <p>Choice: {matchResult.userchoice_1}</p>
+        {/* <p>{matchResult.result.includes('Player 1 wins') ? 'Winner' : 'Loser'}</p> */}
       </div>
       <div className="user-result">
         <h2>{userProfiles.player2.name} (Player 2)</h2>
-        <p>Choice: {matchResult.player2Choice}</p>
-        <p>{matchResult.outcome.includes('Player 2 wins') ? 'Winner' : 'Loser'}</p>
+        <p>Choice: {matchResult.userchoice_2}</p>
+        {/* <p>{matchResult.outcome.includes('Player 2 wins') ? 'Winner' : 'Loser'}</p> */}
       </div>
       <button onClick={handlePlayAgain}>Play Again</button>
       {fromGame && <button onClick={handlePlayAgain}>Next</button>} {/* Conditionally render the "Next" button */}
