@@ -2,22 +2,38 @@ import styles from "./MatchHistory.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMatchHistory } from "../../services/matchHistoryServices";
-import { getProfiles } from "../../services/profileServices";
+import { getProfile, getProfiles } from "../../services/profileServices";
+import { getUserFromToken } from "../../services/tokenService";
 
 const History = () => {
   const [matchHistory, setMatchHistory] = useState([]);
   const [profiles, setProfiles] = useState();
   const navigate = useNavigate();
+  let userid = null
 
   useEffect(() => {
+    getProfile()
+    .then(profile => {
+      console.log(profile[0])
+      userid = profile[0].user
+    })
+    .then( profile => {
     getMatchHistory()
       .then((history) => {
         console.log(history); // array of matches
-        setMatchHistory(history);
+        // setMatchHistory(history);
+        let user_matches = []
         let user_ids = new Set();
         for (let match of history) {
           user_ids.add(match.player_one);
           user_ids.add(match.player_two);
+          if (match.player_one === userid || match.player_two === userid){
+            user_matches.push(match)
+            console.log(`Match: ${match.player_one}, ${match.player_two} ? ${userid}`)
+          }else{
+            console.log(`Not match: ${match.player_one}, ${match.player_two} ? ${userid}`)
+          }
+          setMatchHistory(user_matches)
         }
         return Array.from(user_ids);
       })
@@ -30,7 +46,7 @@ const History = () => {
       })
       .catch((error) => {
         console.error("Failed to fetch match history:", error);
-      });
+      })})
   }, []);
 
   const handleGoToProfile = () => {
