@@ -4,19 +4,29 @@ import { getUserFromToken } from "./tokenService";
 
 export const getProfile = async (user_id) => {
     try {
-      const token = getToken();
-      const response = await fetch(`${BASE_URL}/users/profile/${user_id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, 
-        },
-      })
-      if (!response.ok) throw new Error('Network response was not ok')
-      return await response.json()
+        const token = localStorage.getItem('token');
+        let response = null
+        if (user_id) {
+            response = await fetch(`${BASE_URL}/users/profile/${user_id}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`, 
+                }})
+        }else{
+            response = await fetch(`${BASE_URL}/users/profile/`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`, 
+                }})
+        }
+        if (!response.ok) throw new Error('Network response was not ok')
+        const ret = await response.json()
+        return ret
     } catch (error) {
-      console.error('There was a problem with the fetch operation:', error)
-      throw error
+        console.error('There was a problem with the fetch operation:', error)
+        throw error
     }
   }
 
