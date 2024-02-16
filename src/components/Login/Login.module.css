@@ -1,5 +1,64 @@
-.container {
+@keyframes fadeOutOverlay {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes spinCounterclockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-15deg);
+  }
+}
+
+
+.overlay {
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  position: fixed; /* Cover the entire viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  animation: fadeOutOverlay 2s ease-out forwards;
+  animation-delay: 2s;
+  z-index: 1000; /* Ensure it's above all other content */
+}
+
+.loginContainer {
+  height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #11C4B8;
+}
+
+
+.logoImg {
+  width: 70%;
+  animation: spinCounterclockwise 3s ease forwards; /* Animation duration is 3 seconds */
+}
+
+.header {
+  font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    color: #FFF;
+    text-shadow: 1px 1px 0 #F00665, /* Layer 1 shadow, black for contrast */ 2px 2px 0 #F00665, /* Layer 2 shadow, darker and further */ 3px 3px 0 #F00665;
+    position: relative;
+    top: -10%;
+    font-size: 3.5rem;
+    background-color: #0A0A2F;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

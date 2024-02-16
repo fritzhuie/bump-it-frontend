@@ -1,4 +1,9 @@
-import styles from "./Profile.module.css"
+import styles from "./Profile.module.css";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -46,9 +51,23 @@ const images = [
   // Add more images here
 ];
 
-const Profile = () => {
+const Profile = ({handleLogout}) => {
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState(null);
+  const [openModal, setOpenModal] = useState(false); // State to control modal visibility
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 250,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: "10px",
+  };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -65,57 +84,105 @@ const Profile = () => {
     fetchUserProfile();
   }, []);
 
-  // const handleImageChange = (e) => {
-  //     setNewImageUrl(e.target.value);
-  // };
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
 
   const handleImageUpdate = async (newImageSrc) => {
     try {
-        // Directly pass newImageSrc as the argument to updateProfileImage
-        await updateProfileImage(newImageSrc);
-        
-        // Re-fetch the updated user profile
-        const token = getToken(); // Ensure you're retrieving the token correctly
-        const updatedProfileData = await getUser(token.user_id);
-        
-        // Update state with the newly fetched profile
-        // This assumes updatedProfileData contains the most current profile info, including the new image
-        setUserProfile(updatedProfileData);
+      // Directly pass newImageSrc as the argument to updateProfileImage
+      await updateProfileImage(newImageSrc);
+
+      // Re-fetch the updated user profile
+      const token = getToken(); // Ensure you're retrieving the token correctly
+      const updatedProfileData = await getUser(token.user_id);
+
+      // Update state with the newly fetched profile
+      // This assumes updatedProfileData contains the most current profile info, including the new image
+      setUserProfile(updatedProfileData);
     } catch (error) {
-        console.error("Error updating profile image:", error);
+      console.error("Error updating profile image:", error);
     }
-};
+  };
 
   return (
     <>
-    <h1 className={styles.header}> BUMP IT UP</h1>
-      <h1>Profile</h1>
-      {userProfile && (
-        <div>
-          <p>Username: {userProfile[0].name}</p>
-          <img
-            src={userProfile[0].profile_image || defaultImage}
-            alt="Profile"
-          />
-          <div>
-            {images.map((image) => (
-              <button
-                key={image.id}
-                onClick={() => {
-                  handleImageUpdate(image.src), console.log(image.src);
-                }}
-              >
-                <img
-                  src={image.src}
-                  alt="Select"
-                  style={{ width: 50, height: 50 }}
-                />
-              </button>
-            ))}
+      <div className={styles.profileContainer}>
+        <h1 className={styles.header}>Bump It Up</h1>
+
+        <h1 className={styles.title}> Profile</h1>
+        {userProfile && (
+          <div className={styles.profileContainer}>
+            <div className={styles.avatarContainer}>
+              <img
+                className={styles.avatar}
+                src={userProfile[0].profile_image || defaultImage}
+                alt="Profile"
+              />
+            </div>
+            <h2 className={styles.username}>{userProfile[0].name}</h2>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#0A0A2F" }}
+              onClick={handleOpenModal}
+            >
+              Change Avatar
+            </Button>
           </div>
+        )}
+        <div className={styles.buttonContainer}>
+        <Button
+          style={{
+            position: "relative",
+            bottom: "6%",
+            backgroundColor: "#F00665",
+            color: "white",
+          }}
+          onClick={() => navigate("/game")}
+        >
+          Home
+        </Button>
+        <Button
+          style={{
+            position: "relative",
+            bottom: "6%",
+            backgroundColor: "#FFF",
+            color: "black",
+          }}
+          onClick={() => handleLogout()}
+        >
+          Logout
+        </Button>
         </div>
-      )}
-      <button onClick={() => navigate("/game")}>Home</button>
+      </div>
+
+      {/* Modal for image selection */}
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Grid container spacing={2}>
+            {images.map((image) => (
+              <Grid item xs={4} key={image.id}>
+                <IconButton
+                  onClick={() => {
+                    handleImageUpdate(image.src);
+                    handleCloseModal();
+                  }}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.id}
+                    style={{ width: "100%" , boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }}
+                  />
+                </IconButton>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Modal>
     </>
   );
 };

@@ -1,16 +1,75 @@
-@font-face {
-  font-family: "Kelsi";
-  src: url("../../transfonter.org-20240216-002652/Kelsi-Regular.woff2")
-      format("woff2"),
-    url("../../transfonter.org-20240216-002652/Kelsi-Regular.woff")
-      format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-color: #11C4B8;
 }
 
 .header {
-  font-family: "Kelsi", sans-serif;
-  font-size: 2em;
-  /* Additional styling */
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    color: #FFF; /* Primary text color */
+    text-shadow: 
+      1px 1px 0 #F00665,  /* Layer 1 shadow, black for contrast */
+      2px 2px 0 #F00665,  /* Layer 2 shadow, darker and further */
+      3px 3px 0 #F00665;  /* Layer 3 shadow, even darker */
+      position: relative;
+    top: 10%;
+    font-size: 3rem;
+    background-color: #0A0A2F;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.avatarContainer {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #F00665;
+    position: relative;
+    top: 2%;
+}
+
+.title {
+    font-family: "Comfortaa", sans-serif;
+    position: relative;
+    top: 11%;
+}
+
+.username {
+    font-size: 2em;
+    font-family: "Comfortaa", sans-serif;
+}
+
+.homeBtn {
+    position: relative;
+    bottom: 6%;
+    background-color: #F00665;
+    color: white;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: relative;
+    bottom: 5%;
 }

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getMatchHistory } from '../../services/matchHistoryServices'
-import { getProfiles } from '../../services/profileServices'
+import styles from "./MatchHistory.module.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getMatchHistory } from "../../services/matchHistoryServices";
+import { getProfiles } from "../../services/profileServices";
 
 const History = () => {
   const [matchHistory, setMatchHistory] = useState([]);
@@ -10,59 +11,76 @@ const History = () => {
 
   useEffect(() => {
     getMatchHistory()
-      .then(history => {
-        console.log(history) // array of matches
-        setMatchHistory(history)
-        let user_ids = new Set()
-        for(let match of history){
-          user_ids.add(match.player_one)
-          user_ids.add(match.player_two)
+      .then((history) => {
+        console.log(history); // array of matches
+        setMatchHistory(history);
+        let user_ids = new Set();
+        for (let match of history) {
+          user_ids.add(match.player_one);
+          user_ids.add(match.player_two);
         }
-        return Array.from(user_ids)
+        return Array.from(user_ids);
       })
-      .then(user_ids => {
-        return getProfiles(user_ids)
+      .then((user_ids) => {
+        return getProfiles(user_ids);
       })
-      .then(profiles => {
-        console.log(profiles)
-        setProfiles(profiles)
+      .then((profiles) => {
+        console.log(profiles);
+        setProfiles(profiles);
       })
-      .catch(error => {
-        console.error('Failed to fetch match history:', error)
-      })
+      .catch((error) => {
+        console.error("Failed to fetch match history:", error);
+      });
   }, []);
 
-  const handleGoToHistory = () => {
-    navigate(-1); 
+  const handleGoToProfile = () => {
+    navigate('/profile');
   };
-  
 
   const handleMatchClick = (resultId) => {
     navigate(`/game/result/${resultId}`);
   };
 
   return (
-    <div>
-      <div className="match-result-header">
-        <button className="close-button" onClick={handleGoToHistory}>
-          X
-        </button>
-        <h1>Match Result</h1>
+    <div className={styles.matchResultContainer}>
+      <div className={styles.closeButtonContainer}>
+      <button className={styles.closeButton} onClick={handleGoToProfile}>X</button>
       </div>
-      <ul className='match-container'>
+      <div className={styles.matchResultHeader}>
+        <h1 className={styles.title}>Match Results</h1>
+      </div>
+      <ul className={styles.matchContainer}>
         {matchHistory.map((match) => (
-          <li key={match.id} className='match-row-item' onClick={() => handleMatchClick(match.id)}>
-            <div className='user-avatar'>
-              <img src={`/img/portrait-${match.player_one % 17}.png`} alt="User Avatar" />
+          <li
+            key={match.id}
+            className={styles.matchRowItem}
+            onClick={() => handleMatchClick(match.id)}
+          >
+            <div className={styles.userAvatar}>
+            <div className={styles.imageContainer}>
+              <img
+                className={styles.imageComp}
+                src={`/img/portrait-${match.player_one % 17}.png`}
+                alt="Player 1 Avatar"
+              />
+              </div>
+              <p className={styles.playerInfo} >Player 1: {match.player_one}</p>
             </div>
-            <div className='opponent-avatar'>
-            <img src={`/img/portrait-${match.player_two % 17}.png`} alt="User Avatar" />
+            <p className={styles.vsTag}>VS.</p>
+            <div className={styles.opponentAvatar}>
+              <p className={styles.playerInfo} >Player 2: {match.player_two}</p>
+              <div style={{backgroundColor: '#0A0A2F'}} className={styles.imageContainer}>
+              <img
+                className={styles.imageComp}
+                src={`/img/portrait-${match.player_two % 17}.png`}
+                alt="Player 2 Avatar"
+              />
+              </div>
             </div>
-            
-            <p>{`Match ID: ${match.id}`}</p>
-            <p>{match.time_stamp}</p>
-            <p>{`Player 1: ${match.player_two}`}</p>
-            <p>{`Player 2: ${match.player_two}`}</p>
+            {/* <div className={styles.matchDetails}>
+          <p>Match ID: {match.id}</p>
+          <p>{match.time_stamp}</p>
+        </div> */}
           </li>
         ))}
       </ul>
