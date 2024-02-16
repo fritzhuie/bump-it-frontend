@@ -1,0 +1,104 @@
+
+
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.choice-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 25%;
+  }
+  
+  
+  .choice-buttons button {
+    border: none;
+    border-radius: 50%;
+    width: 40vw; 
+    height: 40vw; 
+    font-size: 48px; 
+    color: white; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+  
+  
+  .rock-button, .paper-button, .scissors-button {
+    
+  }
+  
+  
+  .rock-button.selected, .paper-button.selected, .scissors-button.selected {
+    background-color: green; 
+  }
+  
+  
+  .bottom-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%; 
+    margin-bottom: 25%;
+  }
+  
+  
+  @media (max-width: 480px) {
+    .choice-buttons button {
+      width: 40vw; 
+      height: 40vw; 
+      font-size: 72px; 
+    }
+  }
+
+  .top-bar {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    height: 8vh; 
+    padding: 0 10px; 
+  }
+  
+  .top-bar h1 {
+    flex-grow: 1; 
+    text-align: center; 
+    margin: 0; 
+    font-size: 2rem; 
+  }
+  
+  .profile-image, .history-image {
+    height: 100%; 
+    cursor: pointer; 
+  }
+  
+  .profile-image {
+    border-radius: 50px;
+  }
+  
+  .bottom-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .bottom-buttons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+  }
+  
+  .bottom-buttons button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .status-label {
+    text-align: center;
+    margin-top: 10px;
+  }

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "Kelsi";
+    src: url("../../transfonter.org-20240216-002652/Kelsi-Regular.woff2")
+        format("woff2"),
+      url("../../transfonter.org-20240216-002652/Kelsi-Regular.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  .header {
+    font-family: "Kelsi", sans-serif;
+    font-size: 2em;
+    /* Additional styling */
+  }

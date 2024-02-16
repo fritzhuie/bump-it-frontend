@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import "../../services/gameServices"
 import { sendBump, getMatch } from "../../services/gameServices"
 import { useState } from "react"
+import { getProfile } from "../../services/profileServices"
+import './Game.css'
 
 
 const Game = () => {
@@ -14,6 +16,10 @@ const Game = () => {
 
     const handleHistoryNav = () => {
         navigate("/history")
+    }
+
+    const handleProfileNav = () => {
+        navigate("/profile")
     }
 
     const sendBumpEvent = async () => {
@@ -110,50 +116,52 @@ const Game = () => {
 
     return (
         <>
-            <h1>Game page 1.4</h1>
-            <div>
+        <div className="top-bar">
+            <img 
+                className="profile-image" 
+                src={`/img/portrait-3.png`} 
+                alt="User Avatar" 
+                onClick={handleProfileNav} 
+            />
+            <img 
+                className="history-image" 
+                src={`/img/history.png`} 
+                alt="User Avatar" 
+                onClick={handleHistoryNav} 
+            />
+        </div>
+            
+            <div className="choice-buttons">
                 <button
-                    className="rock-button"
-                    style={{
-                        borderRadius: "50%",
-                        width: "100px",
-                        height: "100px",
-                        backgroundColor: choice === "Rock" ? "green" : "grey",
-                    }}
+                    className={`rock-button ${choice === "Rock" ? "selected" : ""}`}
                     onClick={() => handleSelection("Rock")}
                 >
-                    Rock
+                    ✊
                 </button>
-                <button
-                    className="paper-button"
-                    style={{
-                        borderRadius: "50%",
-                        width: "100px",
-                        height: "100px",
-                        backgroundColor: choice === "Paper" ? "green" : "grey",
-                    }}
-                    onClick={() => handleSelection("Paper")}
-                >
-                    Paper
+                <div className="bottom-row">
+                    <button
+                        className={`paper-button ${choice === "Paper" ? "selected" : ""}`}
+                        onClick={() => handleSelection("Paper")}
+                    >
+                        ✋
+                    </button>
+                    <button
+                        className={`scissors-button ${choice === "Scissors" ? "selected" : ""}`}
+                        onClick={() => handleSelection("Scissors")}
+                    >
+                        ✌️
+                    </button>
+                </div>
+            </div>
+            <div className="bottom-buttons">
+                <button onClick={handleBump}>
+                    Test bump
                 </button>
-                <button
-                    className="scissors-button"
-                    style={{
-                        borderRadius: "50%",
-                        width: "100px",
-                        height: "100px",
-                        backgroundColor:
-                            choice === "Scissors" ? "green" : "grey",
-                    }}
-                    onClick={() => handleSelection("Scissors")}
-                >
-                    Scissor
+                <button onClick={requestDeviceMotionPermission}>
+                    Enable bump!
                 </button>
             </div>
-            <button onClick={handleHistoryNav}>go to history page</button>
-            <button onClick={handleBump}>TEST BUMP</button>
-            <button onClick={requestDeviceMotionPermission}>Enable bump!</button>
-            <p>{status}</p>
+            <p className="status-label">{status}</p>
         </>
     )
 }
