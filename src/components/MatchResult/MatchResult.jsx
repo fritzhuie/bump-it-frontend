@@ -52,31 +52,60 @@ const MatchResult = ({ fromGame }) => {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.matchResultHeader}>
-          <button className={styles.closeButton} onClick={handleGoToHistory}>
-            X
-          </button>
+          <div className={styles.closeButtonContainer}>
+            <button className={styles.closeButton} onClick={handleGoToHistory}>
+              X
+            </button>
+          </div>
           <h1>Match Result</h1>
         </div>
       </div>
       <div className={styles.playerOne}>
-        <div className={styles.userResult}>
-        <img className="avatar-top" src={`/img/portrait-${profiles[0] ? profiles[0].user % 17 : "0" }.png`}></img>
-          <h2>{profiles[0] ? profiles[0].name : ""}</h2>
-          <p>Choice: {matchResult.userchoice_1}</p>
+        <div className={styles.userResultOne}>
+          <div className={styles.userResultOneImageCont}>
+          <img
+            className={styles.userResultOneImage}
+            src={`/img/portrait-${
+              profiles[0] ? profiles[0].user % 17 : "0"
+            }.png`}
+          ></img>
+          </div>
+          <div className={styles.userResultOneDescription}>
+            <h2>{profiles[0] ? profiles[0].name : ""}</h2>
+            <p style={{fontSize: '22px'}} >Choice: {matchResult.userchoice_1}</p>
+          </div>
+          
         </div>
       </div>
-      <div className={styles.versus}></div>
+      <div className={styles.versus}> VS. </div>
       <div className={styles.playerTwo}>
-        <div className={styles.userResult}>
-          <h2>{profiles[1] ? profiles[1].name : ""}</h2>
-          <img className="avatar-bottom" src={`/img/portrait-${profiles[1] ? profiles[1].user % 17 : "0" }.png`}></img>
-          <p>Choice: {matchResult.userchoice_2}</p>
+        <div className={styles.userResultTwo}>
+          <div className={styles.userResultTwoDescription}>
+            <h2>{profiles[1] ? profiles[1].name : ""}</h2>
+            <p style={{fontSize: '22px'}}>Choice: {matchResult.userchoice_2}</p>
+          </div>
+          <div className={styles.userResultTwoImageCont}>
+          <img
+            className={styles.userResultTwoImage}
+            src={`/img/portrait-${
+              profiles[1] ? profiles[1].user % 17 : "0"
+            }.png`}
+          ></img>
+          </div>
         </div>
       </div>
       <div className={styles.buttonClass}>
-        <button className={styles.playAgainClass} onClick={handlePlayAgain}>Play Again</button>
-        {fromGame && <button onClick={handlePlayAgain}>Next</button>}
-        <button className={styles.Class} onClick={handleGoToHistory}>View Match History</button>
+        <button className={styles.playAgainClass} onClick={handlePlayAgain}>
+          Play Again
+        </button>
+        {fromGame && (
+          <button className={styles.playAgainClass} onClick={handlePlayAgain}>
+            Next
+          </button>
+        )}
+        <button className={styles.matchHistoyClass} onClick={handleGoToHistory}>
+          View Match History
+        </button>
       </div>
     </div>
   );
