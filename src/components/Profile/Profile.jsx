@@ -1,3 +1,4 @@
+import styles from "./Profile.module.css"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -87,6 +88,7 @@ const Profile = () => {
 
   return (
     <>
+    <h1 className={styles.header}> BUMP IT UP</h1>
       <h1>Profile</h1>
       {userProfile && (
         <div>
