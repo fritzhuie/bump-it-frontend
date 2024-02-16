@@ -59,38 +59,37 @@ React, Django, Python, Javascript, CSS
 ## GROUP PLANNING
 
 **Team**
-Kenneth = Fullstack/PM
-Shyan = Gitmaster/Fullstack 
-Murad = Fullstack
-Fritz = Fullstack/DB
+- Kenneth = Fullstack/PM
+- Shyan = Gitmaster/Fullstack 
+- Murad = Fullstack
+- Fritz = Fullstack/DB
 
 **Team Focus**
-Team Goals & Values
-Functional Code
-Interactive, Attractive UI
-Thorough Communication Between Teammates
+- Team Goals & Values
+- Functional Code
+- Interactive, Attractive UI
+- Thorough Communication Between Teammates
 
-Team Communication Preferences
-Slack GroupChat at any time; DND is on during sleep hours
-Trello updated daily
-Respond within 3 hours.
+**Team Communication Preferences**
+- Slack GroupChat at any time; DND is on during sleep hours
+- Trello updated daily
+- Respond within 3 hours.
 
 **Communication Styles and Awareness**
-1.) Let’s have all voices to be heard 
-2.) Trust in one another’s ability / ability to assign tasks / agree to implement said features 
-3.) Flexibility in perspectives and the ability to compromise 
-4.) when there’s a failure to agree, or a way to move forward - we revisit the question with Greg, Emre, Grant. 
-5.) Assume the best / keep positive, keep active communication - don’t let things fester bring things to light 
-6.) Let’s stick to the plan with what is agreed upon after approval. 
-7.) Trusting one another to have respect with one another’s opinion - in a safe space.  
-8.) no shutting down, addressing concerns without pushing through.  
-9.) Communicate via visuals / drawn out in detail for all 4 us 
-10.) Everyone should have the floor / equal time 
-11.) everyone’s opinion is valued 
+- Let’s have all voices to be heard
+- Trust in one another’s ability / ability to assign tasks / agree to implement said features 
+- Flexibility in perspectives and the ability to compromise 
+- when there’s a failure to agree, or a way to move forward - we revisit the question with Greg, Emre, Grant. 
+- Assume the best / keep positive, keep active communication - don’t let things fester bring things to light 
+- Let’s stick to the plan with what is agreed upon after approval. 
+- Trusting one another to have respect with one another’s opinion - in a safe space.  
+- no shutting down, addressing concerns without pushing through.  
+- Communicate via visuals / drawn out in detail for all 4 us 
+- Everyone should have the floor / equal time 
+- everyone’s opinion is valued 
 
 **Coding Practices**
 
-Conventions:
 Branch Naming
 master, development, dev;
 sub-branches use  “initial-dev” convention, ie: mk-feature-forms
