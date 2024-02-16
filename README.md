@@ -8,7 +8,8 @@ Welcome to Bump It Up - a bump activated Rock, Paper, Scissors game collaboratin
 ![image](https://github.com/fritzhuie/bump-it-frontend/assets/150071971/878040ac-3d7b-48cb-917f-39d897649466)
 
 ## ERD 
-![image](https://github.com/fritzhuie/bump-it-frontend/assets/150071971/fd4cd5e5-d0c3-4ec0-970c-b93efd7320dd)
+![image](https://github.com/fritzhuie/bump-it-frontend/assets/150071971/908714ed-0f0e-45f6-8de8-fbf039e936e0)
+
 
 ## Trello Link 
 https://trello.com/b/g4yTFtne/bump-it-up-sorry-joe-budden
