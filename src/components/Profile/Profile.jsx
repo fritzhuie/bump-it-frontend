@@ -139,7 +139,7 @@ const Profile = ({handleLogout}) => {
           }}
           onClick={() => navigate("/game")}
         >
-          Home
+          PLAY
         </Button>
         <Button
           style={{

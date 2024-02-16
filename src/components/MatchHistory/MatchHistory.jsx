@@ -47,7 +47,7 @@ const History = () => {
       <button className={styles.closeButton} onClick={handleGoToProfile}>X</button>
       </div>
       <div className={styles.matchResultHeader}>
-        <h1 className={styles.title}>Match Results</h1>
+        <h1 className={styles.title}>Match History</h1>
       </div>
       <ul className={styles.matchContainer}>
         {matchHistory.map((match) => (

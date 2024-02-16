@@ -4,14 +4,14 @@ import "../../services/gameServices"
 import { sendBump, getMatch } from "../../services/gameServices"
 import { useState } from "react"
 import { getProfile } from "../../services/profileServices"
-import './Game.css'
+import styles from './Game.module.css'
 
 
 const Game = () => {
     const navigate = useNavigate()
 
     const [choice, setChoice] = useState(null)
-    const [status, setStatus] = useState("Waiting for bump")
+    const [status, setStatus] = useState("Waiting for bump...")
     let isBumpEnabled = true
 
     const handleHistoryNav = () => {
@@ -116,53 +116,57 @@ const Game = () => {
 
     return (
         <>
-        <div className="top-bar">
+        <div className={styles.gameContainer}>
+        < div className={styles.topBar}>
+            <div className={styles.imageCont}>
             <img 
-                className="profile-image" 
+                className={styles.profileImage} 
                 src={`/img/portrait-3.png`} 
                 alt="User Avatar" 
                 onClick={handleProfileNav} 
             />
+            </div>
             <img 
-                className="history-image" 
+                className={styles.historyImage} 
                 src={`/img/history.png`} 
                 alt="User Avatar" 
                 onClick={handleHistoryNav} 
             />
         </div>
             
-            <div className="choice-buttons">
+        <div className={styles.choiceButtons}>
+            <button
+                className={`${styles.rockButton} ${choice === "Rock" ? styles.selected : ""}`}
+                onClick={() => handleSelection("Rock")}
+            >
+                ✊
+            </button>
+            <div className={styles.bottomRow}>
                 <button
-                    className={`rock-button ${choice === "Rock" ? "selected" : ""}`}
-                    onClick={() => handleSelection("Rock")}
+                    className={`${styles.paperButton} ${choice === "Paper" ? styles.selected : ""}`}
+                    onClick={() => handleSelection("Paper")}
                 >
-                    ✊
+                    ✋
                 </button>
-                <div className="bottom-row">
-                    <button
-                        className={`paper-button ${choice === "Paper" ? "selected" : ""}`}
-                        onClick={() => handleSelection("Paper")}
-                    >
-                        ✋
-                    </button>
-                    <button
-                        className={`scissors-button ${choice === "Scissors" ? "selected" : ""}`}
-                        onClick={() => handleSelection("Scissors")}
-                    >
-                        ✌️
-                    </button>
-                </div>
-            </div>
-            <div className="bottom-buttons">
-                <button onClick={handleBump}>
-                    Test bump
-                </button>
-                <button onClick={requestDeviceMotionPermission}>
-                    Enable bump!
+                <button
+                    className={`${styles.scissorsButton} ${choice === "Scissors" ? styles.selected : ""}`}
+                    onClick={() => handleSelection("Scissors")}
+                >
+                    ✌️
                 </button>
             </div>
-            <p className="status-label">{status}</p>
-        </>
+        </div>
+        <div className={styles.bottomButtons}>
+            <button className={styles.testBtn} onClick={handleBump}>
+                Test bump
+            </button>
+            <button className={styles.enableBtn} onClick={requestDeviceMotionPermission}>
+                Enable bump!
+            </button>
+        </div>
+        <p className={styles.statusLabel}>{status}</p>
+      </div>
+      </>
     )
 }
 
