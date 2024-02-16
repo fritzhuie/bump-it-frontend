@@ -1,6 +1,7 @@
 
 
-import { useState, useEffect } from 'react';
+import './App.css'
+import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import Signup from './components/Signup/Signup';
@@ -34,10 +35,10 @@ const App = () => {
       {/* <NavBar user={user} handleLogout={handleLogout} handleSignupOrLogin={handleSignupOrLogin} /> */}
       {/* Routes definition for navigation */}
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login handleSignupOrLogin={handleSignupOrLogin}/>} />
           <Route path="/login" element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
           <Route path="/signup" element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
-          <Route path="/profile" element={<ProtectedRoute user={user}> <Profile /> </ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute user={user}> <Profile handleLogout={handleLogout} /> </ProtectedRoute>} />
           <Route path="/game" element={   <ProtectedRoute user={user}> <Game /> </ProtectedRoute>} />
           <Route path="/game/result/:resultId" element={ <ProtectedRoute user={user}> <MatchResult /> </ProtectedRoute>} />
           <Route path="/history" element={ <ProtectedRoute user={user}> <History /> </ProtectedRoute> } />

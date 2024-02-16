@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './LoginForm.module.css'
 import { useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
 import './LoginForm.module.css';
@@ -35,12 +36,12 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white/80 p-8 rounded-md shadow-md md:w-96 w-full mt-[-80px]">
-        <h2 className="text-2xl font-bold mb-4">Log In</h2>
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        <h2 className={styles.title}>Log In</h2>
         <form autoComplete="off" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="username" className="text-gray-500 text-sm">
+          <div style={{display: 'flex', flexDirection: 'column'}} className={styles.mb4}>
+            <label htmlFor="username" className={styles.label}>
               Username
             </label>
             <input
@@ -50,11 +51,11 @@ const LoginForm = (props) => {
               value={formData.username}
               name="username"
               onChange={handleChange}
-              className="border border-gray-500 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300 w-full"
+              className={styles.input}
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="text-gray-500 text-sm">
+          <div style={{display: 'flex', flexDirection: 'column', marginTop: '7%'}} className={styles.mb4}>
+            <label htmlFor="password" className={styles.label}>
               Password
             </label>
             <input
@@ -64,20 +65,20 @@ const LoginForm = (props) => {
               value={formData.password}
               name="password"
               onChange={handleChange}
-              className="border border-gray-500 px-3 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-300 w-full"
+              className={styles.input}
             />
           </div>
-          <div className="mt-4 flex flex-col md:flex-row gap-4">
+          <div className={styles.buttonsContainer}>
             <button
               type="submit"
-              className="text-white bg-gray-500 px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-blue-300 w-full md:w-auto"
+              className={`${styles.button} ${styles.loginButton}`}
             >
               Log In
             </button>
             <button
               type="button"
               onClick={handleClear}
-              className="text-gray-500 bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-300 w-full md:w-auto mt-2 md:mt-0"
+              className={`${styles.button} ${styles.clearButton}`}
             >
               Clear
             </button>

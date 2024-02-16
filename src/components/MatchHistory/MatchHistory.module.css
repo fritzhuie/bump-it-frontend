@@ -1,0 +1,102 @@
+/* MatchHistory.module.css */
+.matchResultContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #11C4B8;
+    
+  }
+  
+  .matchResultHeader {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Comfortaa", sans-serif;
+  }
+  
+  .closeButton {
+    margin:5%;
+    color: white;
+    background: black;
+    border-radius: 50%;
+    border-style: none;
+    padding: 3%;
+    width: 11%;
+    font-size: 1rem;
+    text-shadow: 
+      1px 1px 0 #F00665,  /* Layer 1 shadow, black for contrast */
+      2px 2px 0 #F00665,  /* Layer 2 shadow, darker and further */
+      3px 3px 0 #000;  /* Layer 3 shadow, even darker */
+  }
+  
+  .matchContainer {
+    list-style: none;
+    padding: 0;
+    display: contents;
+  }
+  
+  .matchRowItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: white;
+    width: 82%;
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-style: solid;
+  }
+  
+  .userAvatar, .opponentAvatar {
+    display: flex;
+    align-items: center;
+  }
+
+  
+  .vsTag {
+    font-weight: bold;
+    margin: 0 20px;
+  }
+  
+  .matchDetails {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+
+  .imageContainer{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
+    height: 75px;
+    border-radius: 50%;
+    background-color: #F00665;
+    position: relative;
+    top: 2%;
+  }
+  .imageComp {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .playerInfo {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .closeButtonContainer {
+    display: flex;
+    justify-content: start;
+    width: 100vw;
+  }
+
+  .title{
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  

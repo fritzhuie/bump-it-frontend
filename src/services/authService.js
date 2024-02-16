@@ -1,5 +1,6 @@
 //import tokenservice
 import * as tokenService from './tokenService'
+
 //set the base url to the env variable
 
 // console.log(process.env.REACT_APP_BACK_END_SERVER_URL)
@@ -10,8 +11,11 @@ function getUser() {
 }
 // signup function 
 async function signup(user) {
+  
   try {
+
     //set response to awiat the fetch for signup 
+
     const res = await fetch(`${BASE_URL}/users/register/`, {
       //set request method 
       method: 'POST',
@@ -27,6 +31,8 @@ async function signup(user) {
     if (json.err) {
       throw new Error(json.err)
     }
+
+
   } catch (err) {
     console.log(err)
     throw err
