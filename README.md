@@ -8,7 +8,8 @@ Welcome to Bump It Up - a bump activated Rock, Paper, Scissors game collaboratin
 ![image](https://github.com/fritzhuie/bump-it-frontend/assets/150071971/878040ac-3d7b-48cb-917f-39d897649466)
 
 ## ERD 
-![image](https://github.com/fritzhuie/bump-it-frontend/assets/150071971/fd4cd5e5-d0c3-4ec0-970c-b93efd7320dd)
+![image](https://github.com/fritzhuie/bump-it-frontend/assets/150071971/908714ed-0f0e-45f6-8de8-fbf039e936e0)
+
 
 ## Trello Link 
 https://trello.com/b/g4yTFtne/bump-it-up-sorry-joe-budden
@@ -35,6 +36,9 @@ React, Django, Python, Javascript, CSS
   
 2. **Additional mini games**
    - As a user, I want to play additional games with other users I connect with
+  
+3. **Favorites**
+   - As a user, I want to favorite specific matches 
 
 # User Routes
 
@@ -50,3 +54,44 @@ React, Django, Python, Javascript, CSS
 | Game Mechanics  | Bump Event      | POST   | `/game/bump`                | JSON       | `timestamp` (`Date`), `choice` (`rock`, `scissor`, `paper`) |
 | Game Mechanics  | View Result     | GET    | `/game/result/`             | JSON       | `matchId` (path parameter)                          |
 | Game Mechanics  | View Result     | GET    | `/game/result/{matchId}`    | JSON       | `matchId` (path parameter)                          |
+
+
+## GROUP PLANNING
+
+**Team**
+Kenneth = Fullstack/PM
+Shyan = Gitmaster/Fullstack 
+Murad = Fullstack
+Fritz = Fullstack/DB
+
+**Team Focus**
+Team Goals & Values
+Functional Code
+Interactive, Attractive UI
+Thorough Communication Between Teammates
+
+Team Communication Preferences
+Slack GroupChat at any time; DND is on during sleep hours
+Trello updated daily
+Respond within 3 hours.
+
+**Communication Styles and Awareness**
+1.) Let’s have all voices to be heard 
+2.) Trust in one another’s ability / ability to assign tasks / agree to implement said features 
+3.) Flexibility in perspectives and the ability to compromise 
+4.) when there’s a failure to agree, or a way to move forward - we revisit the question with Greg, Emre, Grant. 
+5.) Assume the best / keep positive, keep active communication - don’t let things fester bring things to light 
+6.) Let’s stick to the plan with what is agreed upon after approval. 
+7.) Trusting one another to have respect with one another’s opinion - in a safe space.  
+8.) no shutting down, addressing concerns without pushing through.  
+9.) Communicate via visuals / drawn out in detail for all 4 us 
+10.) Everyone should have the floor / equal time 
+11.) everyone’s opinion is valued 
+
+**Coding Practices**
+
+Conventions:
+Branch Naming
+master, development, dev;
+sub-branches use  “initial-dev” convention, ie: mk-feature-forms
+hotfix, feature, refactor
