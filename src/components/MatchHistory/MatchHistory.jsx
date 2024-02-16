@@ -78,30 +78,28 @@ const History = () => {
             className={styles.matchRowItem}
             onClick={() => handleMatchClick(match.id)}
           >
-            <div className={styles.userAvatar}>
+            <div className={styles.userAvatar}></div>
             <div className={styles.imageContainer}>
-              <img
-                className={styles.imageComp}
-                src={`/img/portrait-${match.player_one % 17}.png`}
-                alt="Player 1 Avatar"
-              />
-              </div>
-                <p className={styles.playerInfo} >
-                {nameList ? nameList[match.player_one] : "name"}
-                </p>
+            <img
+              className={styles.imageComp}
+              src={`/img/portrait-${match.player_one % 17}.png`}
+              alt="Player 1 Avatar"
+            />
             </div>
+            <p className={styles.playerInfo} >
+            {nameList ? nameList[match.player_one] : "name"}
+            </p>
             <p className={styles.vsTag}>VS.</p>
-            <div className={styles.opponentAvatar}>
-                <p className={styles.playerInfo} >
-                  {nameList ? nameList[match.player_two] : "name"}
-                </p>
-              <div style={{backgroundColor: '#0A0A2F'}} className={styles.imageContainer}>
-              <img
-                className={styles.imageComp}
-                src={`/img/portrait-${match.player_two % 17}.png`}
-                alt="Player 2 Avatar"
-              />
-              </div>
+            <div className={styles.opponentAvatar}></div>
+            <p className={styles.playerInfo} >
+              {nameList ? nameList[match.player_two] : "name"}
+            </p>
+            <div style={{backgroundColor: '#0A0A2F'}} className={styles.imageContainer}>
+            <img
+              className={styles.imageComp}
+              src={`/img/portrait-${match.player_two % 17}.png`}
+              alt="Player 2 Avatar"
+            />
             </div>
             {/* <div className={styles.matchDetails}>
           <p>Match ID: {match.id}</p>

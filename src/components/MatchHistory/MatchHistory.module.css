@@ -69,12 +69,12 @@
   }
   
   .imageContainer {
-    width: 100%;
+    width: 20vw;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 75px;
+    height: 20vw;
     border-radius: 50%;
     background-color: #F00665;
     position: relative;
@@ -90,6 +90,7 @@
   .playerInfo {
     text-align: center;
     font-weight: bold;
+    text-align: center;
   }
   
   .closeButtonContainer {
