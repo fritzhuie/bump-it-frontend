@@ -50,3 +50,17 @@ React, Django, Python, Javascript, CSS
 | Game Mechanics  | Bump Event      | POST   | `/game/bump`                | JSON       | `timestamp` (`Date`), `choice` (`rock`, `scissor`, `paper`) |
 | Game Mechanics  | View Result     | GET    | `/game/result/`             | JSON       | `matchId` (path parameter)                          |
 | Game Mechanics  | View Result     | GET    | `/game/result/{matchId}`    | JSON       | `matchId` (path parameter)                          |
+
+
+
+
+
+<img width="265" alt="Screenshot 2024-02-16 at 12 54 37" src="https://github.com/fritzhuie/bump-it-frontend/assets/1472318/77fb688c-ed51-4aa8-8ed6-a46e2f127bf0">
+
+
+
+
+
+
+
+
