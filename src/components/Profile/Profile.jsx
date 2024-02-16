@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -44,6 +45,10 @@ const images = [
   { id: "img17", src: image17 },
   // Add more images here
 ];
+=======
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+>>>>>>> dev
 
 const Profile = () => {
   const navigate = useNavigate();

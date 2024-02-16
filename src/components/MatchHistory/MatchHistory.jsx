@@ -1,48 +1,68 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getMatchHistory } from '../../services/matchHistoryServices'
+import { getProfiles } from '../../services/profileServices'
 
 const History = () => {
   const [matchHistory, setMatchHistory] = useState([]);
+  const [profiles, setProfiles] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    historyServices.getMatchHistory()
+    getMatchHistory()
       .then(history => {
-        // Fetch profiles for all opponents in the match history
-        const profilePromises = history.map(match => profileServices.fetchProfile(match.opponentId));
-        return Promise.all(profilePromises)
-          .then(profiles => {
-            // Combine match history with opponent profiles
-            return history.map((match, index) => ({ ...match, opponentProfile: profiles[index] }));
-          });
+        console.log(history) // array of matches
+        setMatchHistory(history)
+        let user_ids = new Set()
+        for(let match of history){
+          user_ids.add(match.player_one)
+          user_ids.add(match.player_two)
+        }
+        return Array.from(user_ids)
       })
-      .then(combinedHistory => {
-        setMatchHistory(combinedHistory);
+      .then(user_ids => {
+        return getProfiles(user_ids)
+      })
+      .then(profiles => {
+        console.log(profiles)
+        setProfiles(profiles)
       })
       .catch(error => {
-        console.error('Failed to fetch match history:', error);
-      });
+        console.error('Failed to fetch match history:', error)
+      })
   }, []);
 
-  const handleMatchClick = (matchId) => {
-    navigate(`/match-result/${matchId}`);
+  const handleGoToHistory = () => {
+    navigate(-1); 
+  };
+  
+
+  const handleMatchClick = (resultId) => {
+    navigate(`/game/result/${resultId}`);
   };
 
   return (
     <div>
       <div className="match-result-header">
         <button className="close-button" onClick={handleGoToHistory}>
-          <CloseIcon /> {/* Render the "X" icon */}
+          X
         </button>
         <h1>Match Result</h1>
       </div>
-      <ul>
-        {matchHistory.map(match => (
-          <li key={match.id} onClick={() => handleMatchClick(match.id)}>
-            <img src={match.userAvatar} alt="User Avatar" />
-            <img src={match.opponentProfile.avatar} alt="Opponent Avatar" />
-            <p>{match.winnerName}</p>
-            <p>{match.opponentProfile.name}</p>
+      <ul className='match-container'>
+        {matchHistory.map((match) => (
+          <li key={match.id} className='match-row-item' onClick={() => handleMatchClick(match.id)}>
+            <div className='user-avatar'>
+              <img src={`/img/portrait-${match.player_one % 17}.png`} alt="User Avatar" />
+            </div>
+            <div className='opponent-avatar'>
+            <img src={`/img/portrait-${match.player_two % 17}.png`} alt="User Avatar" />
+            </div>
+            
+            <p>{`Match ID: ${match.id}`}</p>
+            <p>{match.time_stamp}</p>
+            <p>{`Player 1: ${match.player_two}`}</p>
+            <p>{`Player 2: ${match.player_two}`}</p>
           </li>
         ))}
       </ul>

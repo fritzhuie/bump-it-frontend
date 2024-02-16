@@ -8,7 +8,7 @@ const getToken = () => {
 export const getMatchHistory = async () => {
   try {
     const token = getToken();
-    const response = await fetch(`${BASE_URL}/components/History`, { // Assuming endpoint for match history is '/components/history'
+    const response = await fetch(`${BASE_URL}/game/result`, { // Assuming endpoint for match history is '/components/history'
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -21,4 +21,4 @@ export const getMatchHistory = async () => {
     console.error('There was a problem with the fetch operation:', error);
     throw error;
   }
-};
+};  
