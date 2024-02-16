@@ -56,17 +56,15 @@ React, Django, Python, Javascript, CSS
 | Game Mechanics  | View Result     | GET    | `/game/result/{matchId}`    | JSON       | `matchId` (path parameter)                          |
 
 
-## Team
-Kenneth, Murad, Fritz, Shayan
+## GROUP PLANNING
 
-**Roles**
+**Team**
 Kenneth = Fullstack/PM
 Shyan = Gitmaster/Fullstack 
 Murad = Fullstack
 Fritz = Fullstack/DB
 
-## GROUP PLANNING
-
+**Team Focus**
 Team Goals & Values
 Functional Code
 Interactive, Attractive UI
@@ -77,9 +75,7 @@ Slack GroupChat at any time; DND is on during sleep hours
 Trello updated daily
 Respond within 3 hours.
 
-
-
-**Communication Styles**
+**Communication Styles and Awareness**
 1.) Let’s have all voices to be heard 
 2.) Trust in one another’s ability / ability to assign tasks / agree to implement said features 
 3.) Flexibility in perspectives and the ability to compromise 
@@ -96,6 +92,6 @@ Respond within 3 hours.
 
 Conventions:
 Branch Naming
-master, development;
+master, development, dev;
 sub-branches use  “initial-dev” convention, ie: mk-feature-forms
 hotfix, feature, refactor
