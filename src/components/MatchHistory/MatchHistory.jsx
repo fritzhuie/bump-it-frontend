@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMatchHistory } from "../../services/matchHistoryServices";
 import { getProfile, getProfiles } from "../../services/profileServices";
-import { getUserFromToken } from "../../services/tokenService";
 
 const History = () => {
   const [matchHistory, setMatchHistory] = useState([]);
   const [profiles, setProfiles] = useState();
+  const [nameList, setNameList] = useState(null)
   const navigate = useNavigate();
   let userid = null
 
@@ -21,7 +21,6 @@ const History = () => {
     getMatchHistory()
       .then((history) => {
         console.log(history); // array of matches
-        // setMatchHistory(history);
         let user_matches = []
         let user_ids = new Set();
         for (let match of history) {
@@ -41,7 +40,14 @@ const History = () => {
         return getProfiles(user_ids);
       })
       .then((profiles) => {
-        console.log(profiles);
+        console.log("PROFILES: ", profiles);
+        let names = {}
+        for (let index in profiles) {
+            console.log(" profile:", profiles[index])
+            names[profiles[index].user] = profiles[index].name
+        }
+        console.log("NAMES: ", names)
+        setNameList(names)
         setProfiles(profiles);
       })
       .catch((error) => {
@@ -80,11 +86,15 @@ const History = () => {
                 alt="Player 1 Avatar"
               />
               </div>
-              <p className={styles.playerInfo} >Player 1: {match.player_one}</p>
+                <p className={styles.playerInfo} >
+                {nameList ? nameList[match.player_one] : "name"}
+                </p>
             </div>
             <p className={styles.vsTag}>VS.</p>
             <div className={styles.opponentAvatar}>
-              <p className={styles.playerInfo} >Player 2: {match.player_two}</p>
+                <p className={styles.playerInfo} >
+                  {nameList ? nameList[match.player_two] : "name"}
+                </p>
               <div style={{backgroundColor: '#0A0A2F'}} className={styles.imageContainer}>
               <img
                 className={styles.imageComp}
