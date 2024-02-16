@@ -55,7 +55,7 @@ React, Django, Python, Javascript, CSS
 
 
 
-<img width="265" alt="Screenshot 2024-02-16 at 12 54 37" src="https://github.com/fritzhuie/bump-it-frontend/assets/1472318/77fb688c-ed51-4aa8-8ed6-a46e2f127bf0">
+<img width="500" alt="qr" src="https://github.com/fritzhuie/bump-it-frontend/assets/1472318/77fb688c-ed51-4aa8-8ed6-a46e2f127bf0">
 
 
 
