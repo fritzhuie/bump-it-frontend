@@ -60,14 +60,16 @@ const MatchResult = ({ fromGame }) => {
       </div>
       <div className={styles.playerOne}>
         <div className={styles.userResult}>
-          <h2>{userProfiles.player1.name} (Player 1)</h2>
+        <img className="avatar-top" src={`/img/portrait-${profiles[0] ? profiles[0].user % 17 : "0" }.png`}></img>
+          <h2>{profiles[0] ? profiles[0].name : ""}</h2>
           <p>Choice: {matchResult.userchoice_1}</p>
         </div>
       </div>
       <div className={styles.versus}></div>
       <div className={styles.playerTwo}>
         <div className={styles.userResult}>
-          <h2>{userProfiles.player2.name} (Player 2)</h2>
+          <h2>{profiles[1] ? profiles[1].name : ""}</h2>
+          <img className="avatar-bottom" src={`/img/portrait-${profiles[1] ? profiles[1].user % 17 : "0" }.png`}></img>
           <p>Choice: {matchResult.userchoice_2}</p>
         </div>
       </div>
