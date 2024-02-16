@@ -4,7 +4,7 @@ import { getUserFromToken } from "./tokenService";
 
 export const getProfile = async (user_id) => {
     try {
-      const token = getToken();
+        const token = localStorage.getItem('token');
       const response = await fetch(`${BASE_URL}/users/profile/${user_id}`, {
         method: 'GET',
         headers: {
