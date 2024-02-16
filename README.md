@@ -36,6 +36,9 @@ React, Django, Python, Javascript, CSS
   
 2. **Additional mini games**
    - As a user, I want to play additional games with other users I connect with
+  
+3. **Favorites**
+   - As a user, I want to favorite specific matches 
 
 # User Routes
 
