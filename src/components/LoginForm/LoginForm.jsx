@@ -17,6 +17,10 @@ const LoginForm = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleToSignUp = () => {
+    navigate('/signup');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -81,6 +85,14 @@ const LoginForm = (props) => {
               className={`${styles.button} ${styles.clearButton}`}
             >
               Clear
+            </button>
+            <button
+              type="button"
+              onClick={handleToSignUp}
+              style={{ backgroundColor: '#F00665', color: 'white'}}
+              className={`${styles.button} ${styles.clearButton}`}
+            >
+              Sign Up!
             </button>
           </div>
         </form>
