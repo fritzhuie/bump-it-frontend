@@ -15,7 +15,7 @@ Welcome to Bump It Up - a bump activated Rock, Paper, Scissors game collaboratin
 https://trello.com/b/g4yTFtne/bump-it-up-sorry-joe-budden
 
 ## Tools Used 
-React, Django, Python, Javascript, CSS 
+React, Django, Python, Javascript, CSS, SQL
 
 ## User Stories 
 
