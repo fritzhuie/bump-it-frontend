@@ -1,10 +1,10 @@
-/* MatchHistory.module.css */
 .matchResultContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #11C4B8;
-    
+    height: 100vh;
+    overflow: hidden; /* Ensure the main container itself doesn't scroll */
   }
   
   .matchResultHeader {
@@ -14,7 +14,7 @@
   }
   
   .closeButton {
-    margin:5%;
+    margin: 5%;
     color: white;
     background: black;
     border-radius: 50%;
@@ -22,16 +22,22 @@
     padding: 3%;
     width: 11%;
     font-size: 1rem;
-    text-shadow: 
+    text-shadow:
       1px 1px 0 #F00665,  /* Layer 1 shadow, black for contrast */
       2px 2px 0 #F00665,  /* Layer 2 shadow, darker and further */
-      3px 3px 0 #000;  /* Layer 3 shadow, even darker */
+      3px 3px 0 #000;     /* Layer 3 shadow, even darker */
   }
   
+  /* Adjusted for scrollable content */
   .matchContainer {
     list-style: none;
     padding: 0;
-    display: contents;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 85vh; /* Adjust based on your layout, ensure it's less than 100vh to allow scrolling within */
+    width: 100%; /* Adjust if necessary */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .matchRowItem {
@@ -51,7 +57,6 @@
     display: flex;
     align-items: center;
   }
-
   
   .vsTag {
     font-weight: bold;
@@ -63,40 +68,38 @@
     text-align: center;
   }
   
-
-  .imageContainer{
+  .imageContainer {
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     display: flex;
     justify-content: center;
-    
     height: 75px;
     border-radius: 50%;
     background-color: #F00665;
     position: relative;
     top: 2%;
   }
+  
   .imageComp {
     width: 50px;
     height: 50px;
     border-radius: 50%;
   }
-
+  
   .playerInfo {
     text-align: center;
     font-weight: bold;
   }
-
+  
   .closeButtonContainer {
     display: flex;
     justify-content: start;
     width: 100vw;
   }
-
-  .title{
+  
+  .title {
     margin-bottom: 20px;
     margin-top: 0;
   }
-
   
